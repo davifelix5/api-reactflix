@@ -1,4 +1,4 @@
-from rest_framework import generics, views
+from rest_framework import generics
 from . import serializers
 from videos.serializers import VideoViewSerializer
 from .models import Category
@@ -31,11 +31,12 @@ class RetrieveUpdateDestroyCategories(generics.RetrieveUpdateDestroyAPIView):
             return serializers.CategoryViewSerializer
 
 
-class ListCategorieVideos(views.APIView):
+class ListCategorieVideos(generics.GenericAPIView):
+    queryset = Category.objects.all()
+
     def get(self, request, pk):
         videos = Video.objects.filter(category__id=pk)
         if not videos:
             return Response({'message': 'Vídeos não encontados'})
-        print(videos)
         serializer = VideoViewSerializer(videos, many=True)
         return Response(serializer.data, status=200)
