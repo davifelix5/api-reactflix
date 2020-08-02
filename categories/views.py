@@ -1,7 +1,7 @@
 from rest_framework import generics, views
 from . import serializers
-from .models import Category
 from videos.serializers import VideoViewSerializer
+from .models import Category
 from videos.models import Video
 from rest_framework.response import Response
 

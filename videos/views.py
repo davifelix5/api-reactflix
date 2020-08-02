@@ -1,6 +1,7 @@
 from rest_framework import generics
 from . import serializers
 from .models import Video
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class ListCreateVideos(generics.ListCreateAPIView):
