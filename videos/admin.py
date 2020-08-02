@@ -1,3 +1,12 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+
+    class Meta:
+        model = models.Video
+
+
+admin.site.register(models.Video, VideoAdmin)
